@@ -1,0 +1,195 @@
+title sokobanshape
+author damien
+homepage www.puzzlescript.net
+
+========
+OBJECTS
+========
+
+Background 
+GREEN   
+
+Wall 
+black
+
+Player 
+Blue   
+
+Cube
+Orange
+00000
+00000
+00000
+00000
+00000
+
+FallenCube
+darkgreen
+00000
+00000
+00000
+00000
+00000
+
+
+CubeHole
+grey
+00000
+00000
+00000
+00000
+00000
+
+FallenSphere
+darkgreen
+..0..
+.000.
+00000
+.000.
+..0..
+
+Sphere
+Orange
+..0..
+.000.
+00000
+.000.
+..0..
+
+
+SphereHole
+grey
+..0..
+.000.
+00000
+.000.
+..0..
+
+
+FallenStar
+darkgreen
+..0..
+..0..
+00000
+..0..
+..0..
+
+Star
+Orange
+..0..
+..0..
+00000
+..0..
+..0..
+
+
+StarHole
+grey
+..0..
+..0..
+00000
+..0..
+..0..
+
+
+FallenCross
+darkgreen
+0...0
+.0.0.
+..0..
+.0.0.
+0...0
+
+Cross
+orange
+0...0
+.0.0.
+..0..
+.0.0.
+0...0
+
+CrossHole
+grey
+0...0
+.0.0.
+..0..
+.0.0.
+0...0
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+
+@ = Player
+
+c = Cube
+ĉ = CubeHole
+
+o = Sphere
+ô = SphereHole
+
+s = Star
+ŝ = StarHole
+
+x = Cross
++ = CrossHole
+
+Hole = SphereHole or CubeHole or CrossHole or StarHole
+Movable = Cube or Sphere or Star or Cross
+Fallen = FallenCube or FallenSphere or FallenCross or FallenStar
+
+=======
+SOUNDS
+=======
+
+================
+COLLISIONLAYERS
+================
+
+Background
+CubeHole, SphereHole, CrossHole, StarHole
+FallenCube, FallenSphere, FallenCross, FallenStar
+Player, Wall, Cube, Sphere, Star, Cross
+
+======
+RULES     
+======     
+
+[ >  Player | Movable] -> [  >  Player | > Movable ]   
+[ >  Movable | Movable] -> [  >  Movable | > Movable ] 
+
+late [ Cube CubeHole No Fallen] -> [ FallenCube CubeHole ]
+
+late [ Sphere CubeHole No Fallen] -> [ FallenSphere CubeHole ]
+late [ Sphere SphereHole No Fallen] -> [ FallenSphere SphereHole ]
+
+late [ Star CubeHole No Fallen] -> [ FallenStar CubeHole ]
+late [ Star SphereHole No Fallen] -> [ FallenStar SphereHole ]
+late [ Star StarHole No Fallen] -> [ FallenStar StarHole ]
+
+late [ Cross CubeHole No Fallen] -> [ FallenCross CubeHole ]
+late [ Cross CrossHole No Fallen] -> [ FallenCross CrossHole ]
+
+==============
+WINCONDITIONS
+==============
+
+no Movable
+
+=======     
+LEVELS
+=======
+
+#################
+#...............#
+#....c..ĉ.......#
+#...........s...#
+#.@.o.ô.........#
+#............ŝ..#
+#.....O.........#
+#..x..+...ô.....#
+#...............#
+#################
