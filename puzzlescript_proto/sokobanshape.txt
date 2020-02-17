@@ -13,7 +13,31 @@ Wall
 black
 
 Player 
-Blue   
+Blue  
+
+Button
+purple
+.....
+.000.
+.0.0.
+.000.
+.....
+
+Door
+purple
+00000
+00000
+00000
+00000
+00000
+
+OpenDoor
+purple
+0...0
+.....
+.....
+.....
+0...0
 
 Cube
 Orange
@@ -137,6 +161,10 @@ s = Star
 x = Cross
 + = CrossHole
 
+b = Button
+d = Door
+p = OpenDoor
+
 Hole = SphereHole or CubeHole or CrossHole or StarHole
 Movable = Cube or Sphere or Star or Cross
 Fallen = FallenCube or FallenSphere or FallenCross or FallenStar
@@ -151,27 +179,33 @@ COLLISIONLAYERS
 
 Background
 CubeHole, SphereHole, CrossHole, StarHole
-FallenCube, FallenSphere, FallenCross, FallenStar
-Player, Wall, Cube, Sphere, Star, Cross
+FallenCube, FallenSphere, FallenCross, FallenStar, Button, OpenDoor
+Player, Wall, Cube, Sphere, Star, Cross, Door
 
 ======
 RULES     
 ======     
 
 [ >  Player | Movable] -> [  >  Player | > Movable ]   
-[ >  Movable | Movable] -> [  >  Movable | > Movable ] 
+[ >  Movable | Movable] -> [  >  Movable | > Movable ]
 
-late [ Cube CubeHole No Fallen] -> [ FallenCube CubeHole ]
+late [ Cube CubeHole No Fallen ] -> [ FallenCube CubeHole ]
 
-late [ Sphere CubeHole No Fallen] -> [ FallenSphere CubeHole ]
-late [ Sphere SphereHole No Fallen] -> [ FallenSphere SphereHole ]
+late [ Sphere CubeHole No Fallen ] -> [ FallenSphere CubeHole ]
+late [ Sphere SphereHole No Fallen ] -> [ FallenSphere SphereHole ]
 
-late [ Star CubeHole No Fallen] -> [ FallenStar CubeHole ]
-late [ Star SphereHole No Fallen] -> [ FallenStar SphereHole ]
-late [ Star StarHole No Fallen] -> [ FallenStar StarHole ]
+late [ Star CubeHole No Fallen ] -> [ FallenStar CubeHole ]
+late [ Star SphereHole No Fallen ] -> [ FallenStar SphereHole ]
+late [ Star StarHole No Fallen ] -> [ FallenStar StarHole ]
 
-late [ Cross CubeHole No Fallen] -> [ FallenCross CubeHole ]
-late [ Cross CrossHole No Fallen] -> [ FallenCross CrossHole ]
+late [ Cross CubeHole No Fallen ] -> [ FallenCross CubeHole ]
+late [ Cross CrossHole No Fallen ] -> [ FallenCross CrossHole ]
+
+late [ Button No Player | ... | OpenDoor No Player No Movable ] -> [ Button | ... | Door]
+late [ Button No Movable | ... | OpenDoor No Player No Movable ] -> [ Button | ... | Door]
+
+late [ Player Button | ... | Door ] -> [ Player Button | ... | OpenDoor ]
+late [ Movable Button | ... | Door ] -> [ Movable Button | ... | OpenDoor ]
 
 ==============
 WINCONDITIONS
@@ -183,6 +217,34 @@ no Movable
 LEVELS
 =======
 
+(Test levels)
+(Template)
+(#######
+#.....#
+#.....#
+#.....#
+#.@oô.#
+#.....#
+#######)
+
+(This one has more solutions if we can push a row of blocks)
+(#######
+#ŝ.#.ô#
+#.s...#
+#ĉoĉx.#
+#s.c+.#
+#@sôoŝ#
+#######)
+
+(button and door test)
+#########
+#...#...#
+#.b.d.s.#
+#@cĉ#.ŝ.#
+#...#...#
+#########
+
+(Actual Level 1)
 #######
 #.....#
 #.ô...#
@@ -198,7 +260,6 @@ LEVELS
 #.oc##
 ##@.##
 ######
-
 
 #######
 ##ŝ...#
@@ -221,3 +282,4 @@ LEVELS
 #...###
 #.@.###
 #######
+
