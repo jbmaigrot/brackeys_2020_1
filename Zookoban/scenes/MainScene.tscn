@@ -20,3 +20,4 @@ script = ExtResource( 2 )
 
 [node name="Player" parent="Grid" instance=ExtResource( 1 )]
 position = Vector2( 64, 64 )
+z_index = 4096

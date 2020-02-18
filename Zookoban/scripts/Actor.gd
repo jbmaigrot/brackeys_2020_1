@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-enum {EMPTY, PLAYER, ANIMAL, OBSTACLE, COLLECTIBLE}
+enum TYPE {EMPTY, PLAYER, ANIMAL, INSOCKET, SOCKET, OBSTACLE, COLLECTIBLE}
 
 var direction = Vector2();
 var target_direction = Vector2()
@@ -25,7 +25,12 @@ func _ready():
 func move(dir):
 	
 	var pos_translation =  grid.grid_move(self, dir) - position
+	grid.grid_move(self, dir)
 	move_and_collide(pos_translation)
+	end_move()
+
+func end_move():
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

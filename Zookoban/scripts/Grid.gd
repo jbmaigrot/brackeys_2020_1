@@ -1,6 +1,6 @@
 extends TileMap
 
-enum {EMPTY, PLAYER, ANIMAL, OBSTACLE, COLLECTIBLE}
+enum {EMPTY, PLAYER, ANIMAL, SOCKET, OBSTACLE, COLLECTIBLE}
 
 var tile_size = get_cell_size();
 var half_tile_size = tile_size / 2;
@@ -10,6 +10,7 @@ var grid = [];
 
 onready var Player = preload("res://scenes/Player.tscn")
 onready var Animal = preload("res://scenes/Animal.tscn")
+onready var AnimalSocket = preload("res://scenes/AnimalSocket.tscn")
 const PLAYER_STARTPOS = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
@@ -33,6 +34,12 @@ func _ready():
 	new_animal.position = map_to_world(Vector2(5,5)) + half_tile_size
 	grid[5][5] = ANIMAL
 	add_child(new_animal)
+	
+	# TEMP Add Animal Socket
+	var new_socket = AnimalSocket.instance()
+	new_socket.position = map_to_world(Vector2(8,5)) + half_tile_size
+	grid[8][5] = SOCKET
+	add_child(new_socket)
 	
 
 func is_cell_free(pos, direction):

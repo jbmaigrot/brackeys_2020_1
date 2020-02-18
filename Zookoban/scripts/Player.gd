@@ -2,7 +2,7 @@ extends "Actor.gd"
 
 func _ready():
 	._ready()
-	type = PLAYER
+	type = TYPE.PLAYER
 
 func _process(delta):
 	
@@ -12,16 +12,15 @@ func _process(delta):
 		is_moving = false
 	else:
 		match grid.is_cell_free(position, direction):
-			EMPTY:
+			TYPE.EMPTY, TYPE.SOCKET, TYPE.INSOCKET:
 				move(direction)
-			ANIMAL:
+			TYPE.ANIMAL:
 				for node in grid.get_children():
-					if node.type == ANIMAL:
+					if node.type == TYPE.ANIMAL:
 						print ("PLAYER : " + str(grid.world_to_map(self.position)))
 						print ("ACTOR : " + str(grid.world_to_map(node.position)))
 						
 						if grid.world_to_map(node.position) == grid.world_to_map(self.position) + direction :
-							grid.grid_move(node, direction)
 							node.move(direction)
 							print(str(node.type) +" MOVE")
 						
