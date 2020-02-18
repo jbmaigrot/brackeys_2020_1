@@ -7,11 +7,11 @@ var animal_type
 var sprite
 
 # Animals
-onready var spr_cube = preload("res://sprites/proto/crate_02.png")
-onready var spr_circle = preload("res://sprites/proto/crate_03.png")
-onready var spr_losange = preload("res://sprites/proto/crate_04.png")
-onready var spr_star = preload("res://sprites/proto/crate_05.png")
-onready var spr_cross = preload("res://sprites/proto/crate_06.png")
+onready var spr_cube = preload("res://sprites/animals/A_square.png")
+onready var spr_circle = preload("res://sprites/animals/A_circle.png")
+onready var spr_losange = preload("res://sprites/animals/A_losange.png")
+onready var spr_star = preload("res://sprites/animals/A_star.png")
+onready var spr_cross = preload("res://sprites/animals/A_cross.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
