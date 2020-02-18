@@ -36,6 +36,10 @@ func _ready():
 		ANIMALS.CROSS:
 			sprite.texture = spr_cross
 
+func _process(delta):
+	if type == TYPE.INSOCKET:
+		sprite.flip_v = true
+
 func end_move():
 	.end_move()
 	for node in grid.get_children():
