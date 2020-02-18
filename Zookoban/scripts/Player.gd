@@ -1,59 +1,45 @@
-extends KinematicBody2D
+extends "Actor.gd"
 
-var direction = Vector2();
-var target_direction = Vector2()
-var world_target_pos = Vector2()
-var is_moving = false
-
-
-var velocity = Vector2();
-
-var speed = 0;
-
-const MAXSPEED = 400;
-
-var grid
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	grid = get_parent()
-	set_process(true)
-
+	._ready()
+	type = PLAYER
 
 func _process(delta):
-	direction = Vector2()
-	speed = 0
+	
+	direction = move_input()
+	
+	if direction == Vector2(0,0):
+		is_moving = false
+	else:
+		match grid.is_cell_free(position, direction):
+			EMPTY:
+				move(direction)
+			ANIMAL:
+				for node in grid.get_children():
+					if node.type == ANIMAL:
+						print ("PLAYER : " + str(grid.world_to_map(self.position)))
+						print ("ACTOR : " + str(grid.world_to_map(node.position)))
+						
+						if grid.world_to_map(node.position) == grid.world_to_map(self.position) + direction :
+							grid.grid_move(node, direction)
+							node.move(direction)
+							print(str(node.type) +" MOVE")
+						
+				print("SELF MOVE")
+				move(direction)
+				
 
-	if Input.is_action_pressed("move_up"):
-		direction.y = -1
-	elif Input.is_action_pressed("move_down"):
-		direction.y = 1
-
-	if Input.is_action_pressed("move_left"):
-		direction.x = -1
-	elif Input.is_action_pressed("move_right"):
-		direction.x = 1
-
-	if not is_moving and direction != Vector2():
-		# if player is not moving and has no direction
-		# then set the target direction
-		target_direction = direction.normalized()
-
-		if grid.is_cell_free(position, direction):
-			world_target_pos = grid.update_actor_pos(position, direction)
-			is_moving = true
-
-	elif is_moving:
-		speed = MAXSPEED
-		velocity = speed * target_direction * delta
-
-		var distance_to_target = position.distance_to(world_target_pos)
-		var move_distance = velocity.length()
-
-		# Set the last movement distance to the distance to the target
-		# this will make the player stop exaclty on the target
-		if distance_to_target < move_distance:
-			velocity = target_direction * distance_to_target
-			is_moving = false
-
-		move_and_collide(velocity)
+func move_input():
+	var dir = Vector2(0,0)
+	if Input.is_action_just_pressed("move_up"):
+		dir.y = -1
+	elif Input.is_action_just_pressed("move_down"):
+		dir.y = 1
+	elif Input.is_action_just_pressed("move_left"):
+		dir.x = -1
+	elif Input.is_action_just_pressed("move_right"):
+		dir.x = 1
+	else:
+		dir = Vector2(0,0)
+		
+	return dir

@@ -1,14 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Grid.gd" type="Script" id=2]
+
+[sub_resource type="TileSet" id=1]
 
 [node name="Node" type="Node"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 869.153, 276.015 )
+anchor_mode = 0
+current = true
 zoom = Vector2( 2, 2 )
 
 [node name="Grid" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
 cell_size = Vector2( 128, 128 )
 format = 1
 script = ExtResource( 2 )
+
+[node name="Player" parent="Grid" instance=ExtResource( 1 )]
+position = Vector2( 64, 64 )
