@@ -39,17 +39,19 @@ func _ready():
 func _process(delta):
 	if type == TYPE.INSOCKET:
 		sprite.flip_v = true
+		z_index = 2
 
 func end_move():
 	.end_move()
 	for node in grid.get_children():
-		if node.type == TYPE.SOCKET:
+		if node.type == TYPE.SOCKET and node.filled == false:
 			if grid.world_to_map(node.position) == grid.world_to_map(self.position):
 				match animal_type:
 					ANIMALS.CUBE:
 						match node.animal_type:
 							ANIMALS.CUBE:
 								type = TYPE.INSOCKET
+								node.filled = true
 							ANIMALS.CIRCLE:
 								pass
 							ANIMALS.LOSANGE:
@@ -62,8 +64,10 @@ func end_move():
 						match node.animal_type:
 							ANIMALS.CUBE:
 								type = TYPE.INSOCKET
+								node.filled = true
 							ANIMALS.CIRCLE:
 								type = TYPE.INSOCKET
+								node.filled = true
 							ANIMALS.LOSANGE:
 								pass
 							ANIMALS.STAR:
@@ -74,10 +78,13 @@ func end_move():
 						match node.animal_type:
 							ANIMALS.CUBE:
 								type = TYPE.INSOCKET
+								node.filled = true
 							ANIMALS.CIRCLE:
 								type = TYPE.INSOCKET
+								node.filled = true
 							ANIMALS.LOSANGE:
 								type = TYPE.INSOCKET
+								node.filled = true
 							ANIMALS.STAR:
 								pass
 							ANIMALS.CROSS:
@@ -86,18 +93,21 @@ func end_move():
 						match node.animal_type:
 							ANIMALS.CUBE:
 								type = TYPE.INSOCKET
+								node.filled = true
 							ANIMALS.CIRCLE:
 								pass
 							ANIMALS.LOSANGE:
 								pass
 							ANIMALS.STAR:
 								type = TYPE.INSOCKET
+								node.filled = true
 							ANIMALS.CROSS:
 								pass
 					ANIMALS.CROSS:
 						match node.animal_type:
 							ANIMALS.CUBE:
 								type = TYPE.INSOCKET
+								node.filled = true
 							ANIMALS.CIRCLE:
 								pass
 							ANIMALS.LOSANGE:
@@ -106,3 +116,4 @@ func end_move():
 								pass
 							ANIMALS.CROSS:
 								type = TYPE.INSOCKET
+								node.filled = true
