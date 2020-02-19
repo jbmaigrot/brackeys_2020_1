@@ -8,9 +8,9 @@ var half_tile_size = tile_size / 2;
 var grid_size = Vector2(16,16)
 var grid = [];
 
-onready var Player = preload("res://scenes/Player.tscn")
-onready var Animal = preload("res://scenes/Animal.tscn")
-onready var AnimalSocket = preload("res://scenes/AnimalSocket.tscn")
+onready var Player = preload("res://scenes/actors/Player.tscn")
+onready var Animal = preload("res://scenes/actors/Animal.tscn")
+onready var AnimalSocket = preload("res://scenes/actors/AnimalSocket.tscn")
 const PLAYER_STARTPOS = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
@@ -34,6 +34,11 @@ func _ready():
 	new_animal.position = map_to_world(Vector2(5,5)) + half_tile_size
 	grid[5][5] = ANIMAL
 	add_child(new_animal)
+	
+	var new_animal2 = Animal.instance()
+	new_animal2.position = map_to_world(Vector2(6,5)) + half_tile_size
+	grid[6][5] = ANIMAL
+	add_child(new_animal2)
 	
 	# TEMP Add Animal Socket
 	var new_socket = AnimalSocket.instance()

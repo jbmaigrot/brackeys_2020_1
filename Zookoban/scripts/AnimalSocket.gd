@@ -4,6 +4,8 @@ enum ANIMALS {CUBE, CIRCLE, LOSANGE, STAR, CROSS}
 
 var animal_type
 
+var filled
+
 var sprite
 
 # Animals Socket
@@ -17,6 +19,7 @@ onready var spr_cross = preload("res://sprites/holes/H_cross.png")
 func _ready():
 	._ready()
 	
+	filled = false
 	sprite = get_node("Sprite")
 	
 	type = TYPE.SOCKET
