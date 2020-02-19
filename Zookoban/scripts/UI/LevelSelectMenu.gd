@@ -9,6 +9,6 @@ func _ready():
 
 	
 func back_button_pressed():
-	get_node("/root/Globals").load_main_menu()
+	Globals.load_main_menu()
 	
 

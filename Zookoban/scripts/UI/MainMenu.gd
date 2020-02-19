@@ -9,10 +9,10 @@ func _ready():
 	$VBoxContainer/Button_Exit.connect("pressed", self, "exit_button_pressed")
 	
 func level_select_button_pressed():
-	get_node("/root/Globals").load_level_select_menu()
+	Globals.load_level_select_menu()
 	
 func exit_button_pressed():
 	get_tree().quit()
 	
 func start_button_pressed():
-	get_node("/root/Globals").load_new_scene(first_scene_temp)
+	Globals.load_new_scene(first_scene_temp)
