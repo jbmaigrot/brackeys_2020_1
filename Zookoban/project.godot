@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Zookoban"
-run/main_scene="res://scenes/MainScene.tscn"
+run/main_scene="res://scenes/MainMenu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://scripts/Globals.gd"
 
 [display]
 
