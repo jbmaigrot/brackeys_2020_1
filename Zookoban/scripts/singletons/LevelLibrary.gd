@@ -52,11 +52,11 @@ func load_level_file(file_path):
 				var level_number = -1
 				var level_name = ""
 				if level_infos.size() >=2:
-					level_world = level_infos[0]
-					level_number = level_infos[1]
+					level_world = int(level_infos[0])
+					level_number = int(level_infos[1])
 				if level_infos.size() >=3:
 					level_name = level_infos[2]
-				print ("parsing level "+level_world+"."+level_number+" : \""+level_name+"\".") 
+				print ("parsing level "+str(level_world)+"."+str(level_number)+" : \""+level_name+"\".") 
 					
 	
 	#var content = levels_file.get_as_text()
