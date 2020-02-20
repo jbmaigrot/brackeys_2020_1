@@ -21,16 +21,16 @@ func _ready():
 
 
 func move(dir):
-	
-	check_push(dir)
-	
-	var pos_translation =  grid.grid_move(self, dir) - position
-							
-	#grid.grid_move(self, dir)
-# warning-ignore:return_value_discarded
-	move_and_collide(pos_translation)
-	end_move()
-	return true
+	if(grid.grid_move_check(self,dir)):
+		check_push(dir)
+		
+		var pos_translation =  grid.grid_move(self, dir) - position
+								
+		#grid.grid_move(self, dir)
+	# warning-ignore:return_value_discarded
+		move_and_collide(pos_translation)
+		end_move()
+		return true
 
 func check_push(dir):
 	print(grid.is_cell_free(position, dir))

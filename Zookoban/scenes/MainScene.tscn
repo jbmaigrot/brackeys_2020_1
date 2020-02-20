@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/Grid.gd" type="Script" id=1]
-[ext_resource path="res://sprites/proto/ts_proto_enviro.tres" type="TileSet" id=3]
+[ext_resource path="res://sprites/enviro/ts_enviro.tres" type="TileSet" id=3]
 
 [node name="Node" type="Node"]
 

@@ -82,6 +82,13 @@ func grid_move(actor, direction):
 
 	return map_to_world(new_grid_pos) + half_tile_size
 
+func grid_move_check(actor, direction):
+	var test_pos = world_to_map(actor.position) + direction
+	if test_pos.x >= grid_size.x or test_pos.y >= grid_size.y or test_pos.x < 0 or test_pos.y < 0:
+		return false
+	else:
+		return true
+
 func grid_refresh_actor_type(actor):
 	var actor_grid_pos = world_to_map(actor.position)
 	grid[actor_grid_pos.x][actor_grid_pos.y] = actor.type

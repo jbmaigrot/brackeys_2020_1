@@ -8,10 +8,10 @@ func _process(delta):
 	
 	var direction = move_input()
 	
-	if direction == Vector2(0,0):
-		pass
-	else:
-		move(direction)
+	if direction != Vector2(0,0):
+		if(move(direction)):
+			pass
+			# Increase move count
 				
 
 func move_input():
