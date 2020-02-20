@@ -5,7 +5,7 @@ const  LEVELS_DIR_PATH = "res://levels"
 const LEVEL_INFO_FLAG = "]"
 const LEVEL_INFO_SEPARATOR = "|"
 
-var levels = {3: {1:{"level 1 of world 2" : "test", "level" : [[0,0,0],[0,0,0]] }}}
+var levels = {} #exemple of data structure : {3: {1:{"level 1 of world 2" : "test", "level" : [[0,0,0],[0,0,0]] }}}
 
 func _ready():
 	load_level_files(list_all_level_files(LEVELS_DIR_PATH))
