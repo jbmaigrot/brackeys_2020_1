@@ -1,6 +1,6 @@
 extends TileMap
 
-enum {EMPTY, PLAYER, ANIMAL, SOCKET, OBSTACLE, COLLECTIBLE}
+enum {EMPTY, PLAYER, ANIMAL, SOCKET, OBSTACLE, WALL, COLLECTIBLE}
 
 var tile_size = get_cell_size();
 var half_tile_size = tile_size / 2;

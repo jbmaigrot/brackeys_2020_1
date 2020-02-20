@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-enum TYPE {EMPTY, PLAYER, ANIMAL, INSOCKET, SOCKET, OBSTACLE, COLLECTIBLE}
+enum TYPE {EMPTY, PLAYER, ANIMAL, INSOCKET, SOCKET, OBSTACLE, WALL, COLLECTIBLE}
 var target_direction = Vector2()
 var world_target_pos = Vector2()
 var is_moving = false
@@ -37,11 +37,14 @@ func check_push(dir):
 	
 	match grid.is_cell_free(position, dir):
 			TYPE.EMPTY, TYPE.SOCKET, TYPE.INSOCKET:
-				pass
+				return true
 			TYPE.ANIMAL:
 				for node in grid.get_children():
-					if grid.world_to_map(node.position) == grid.world_to_map(position) + dir :
-						node.move(dir)
+					if node.type == TYPE.ANIMAL:
+						if grid.world_to_map(node.position) == grid.world_to_map(position) + dir :
+							node.move(dir)
+			TYPE.OBSTACLE, TYPE.WALL:
+				return false
 
 func end_move():
 	grid.grid_refresh_actor_type(self)
