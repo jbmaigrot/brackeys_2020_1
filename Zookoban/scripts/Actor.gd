@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
 enum TYPE {EMPTY, PLAYER, ANIMAL, INSOCKET, SOCKET, OBSTACLE, COLLECTIBLE}
-
-var direction = Vector2();
 var target_direction = Vector2()
 var world_target_pos = Vector2()
 var is_moving = false
@@ -24,13 +22,29 @@ func _ready():
 
 func move(dir):
 	
+	check_push(dir)
+	
 	var pos_translation =  grid.grid_move(self, dir) - position
-	grid.grid_move(self, dir)
+							
+	#grid.grid_move(self, dir)
+# warning-ignore:return_value_discarded
 	move_and_collide(pos_translation)
 	end_move()
+	return true
+
+func check_push(dir):
+	print(grid.is_cell_free(position, dir))
+	
+	match grid.is_cell_free(position, dir):
+			TYPE.EMPTY, TYPE.SOCKET, TYPE.INSOCKET:
+				pass
+			TYPE.ANIMAL:
+				for node in grid.get_children():
+					if grid.world_to_map(node.position) == grid.world_to_map(position) + dir :
+						node.move(dir)
 
 func end_move():
-	pass
+	grid.grid_refresh_actor_type(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

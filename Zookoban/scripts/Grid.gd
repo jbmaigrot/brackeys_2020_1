@@ -5,7 +5,7 @@ enum {EMPTY, PLAYER, ANIMAL, SOCKET, OBSTACLE, COLLECTIBLE}
 var tile_size = get_cell_size();
 var half_tile_size = tile_size / 2;
 
-var grid_size = Vector2(16,16)
+var grid_size = Vector2(20,10)
 var grid = [];
 
 onready var Player = preload("res://scenes/actors/Player.tscn")
@@ -25,11 +25,11 @@ func _ready():
 	# This updates the "Autotiling" based on how the grid is filled
 	update_bitmask_region(Vector2(0,0),grid_size)
 
-	# Player
-	#var new_player = Player.instance()
-	#new_player.position = map_to_world(PLAYER_STARTPOS) + half_tile_size
-	#grid[PLAYER_STARTPOS.x][PLAYER_STARTPOS.y] = PLAYER
-	#add_child(new_player)
+	Player
+	var new_player = Player.instance()
+	new_player.position = map_to_world(PLAYER_STARTPOS) + half_tile_size
+	grid[PLAYER_STARTPOS.x][PLAYER_STARTPOS.y] = PLAYER
+	add_child(new_player)
 		
 	
 	# Generate Level
@@ -78,8 +78,10 @@ func grid_move(actor, direction):
 	grid[actor_grid_pos.x][actor_grid_pos.y] = EMPTY
 
 	# place actor in new grid coord
-	grid[new_grid_pos.x][new_grid_pos.y] = actor.type
+	grid_refresh_actor_type(actor)
 
-	var new_pos = map_to_world(new_grid_pos) + half_tile_size
-	return new_pos
+	return map_to_world(new_grid_pos) + half_tile_size
 
+func grid_refresh_actor_type(actor):
+	var actor_grid_pos = world_to_map(actor.position)
+	grid[actor_grid_pos.x][actor_grid_pos.y] = actor.type
