@@ -69,7 +69,7 @@ func load_level_file(file_path):
 					print("error : level "+str(level_world)+"."+str(level_number)+"already exists !")
 				else:
 					levels[level_world][level_number] = {"name" : level_name, "levels":[]}
-				print(to_json(levels))
+				#print(to_json(levels))
 				
 				lvl_y = 0
 				lvl_x = 0
