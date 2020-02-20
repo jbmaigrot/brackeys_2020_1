@@ -1,6 +1,6 @@
 extends "Actor.gd"
 
-enum ANIMALS {CUBE, CIRCLE, LOSANGE, STAR, CROSS}
+enum ANIMALS {CUBE, CIRCLE, LOSANGE, CROSS}
 
 var animal_type
 
@@ -10,7 +10,6 @@ var sprite
 onready var spr_cube = preload("res://sprites/animals/A_square.png")
 onready var spr_circle = preload("res://sprites/animals/A_circle.png")
 onready var spr_losange = preload("res://sprites/animals/A_losange.png")
-onready var spr_star = preload("res://sprites/animals/A_star.png")
 onready var spr_cross = preload("res://sprites/animals/A_cross.png")
 
 # Called when the node enters the scene tree for the first time.
@@ -31,13 +30,11 @@ func _ready():
 			sprite.texture = spr_circle
 		ANIMALS.LOSANGE:
 			sprite.texture = spr_losange
-		ANIMALS.STAR:
-			sprite.texture = spr_star
 		ANIMALS.CROSS:
 			sprite.texture = spr_cross
 
 func _process(delta):
-	if type == TYPE.INSOCKET:
+	if type == TYPE.EMPTY:
 		sprite.flip_v = true
 		z_index = 2
 
@@ -50,70 +47,50 @@ func end_move():
 					ANIMALS.CUBE:
 						match node.animal_type:
 							ANIMALS.CUBE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CIRCLE:
 								pass
 							ANIMALS.LOSANGE:
-								pass
-							ANIMALS.STAR:
 								pass
 							ANIMALS.CROSS:
 								pass
 					ANIMALS.CIRCLE:
 						match node.animal_type:
 							ANIMALS.CUBE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CIRCLE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.LOSANGE:
-								pass
-							ANIMALS.STAR:
 								pass
 							ANIMALS.CROSS:
 								pass
 					ANIMALS.LOSANGE:
 						match node.animal_type:
 							ANIMALS.CUBE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CIRCLE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.LOSANGE:
-								type = TYPE.INSOCKET
-								node.filled = true
-							ANIMALS.STAR:
-								pass
-							ANIMALS.CROSS:
-								pass
-					ANIMALS.STAR:
-						match node.animal_type:
-							ANIMALS.CUBE:
-								type = TYPE.INSOCKET
-								node.filled = true
-							ANIMALS.CIRCLE:
-								pass
-							ANIMALS.LOSANGE:
-								pass
-							ANIMALS.STAR:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CROSS:
 								pass
 					ANIMALS.CROSS:
 						match node.animal_type:
 							ANIMALS.CUBE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CIRCLE:
 								pass
 							ANIMALS.LOSANGE:
 								pass
-							ANIMALS.STAR:
-								pass
 							ANIMALS.CROSS:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
+				if node.filled:
+					grid.grid_refresh_actor_type(self)
