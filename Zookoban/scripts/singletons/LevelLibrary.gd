@@ -43,6 +43,12 @@ func load_level_file(file_path):
 		push_error("level file \""+file_path+"\" not found")
 		return 
 
+	var lvl_y = 0
+	var lvl_x = 0
+	
+	var cur_world = -1
+	var cur_lvl_num = -1
+
 	levels_file.open(file_path, File.READ)
 	while not levels_file.eof_reached():
 			var line = levels_file.get_line()
@@ -64,7 +70,24 @@ func load_level_file(file_path):
 				else:
 					levels[level_world][level_number] = {"name" : level_name, "levels":[]}
 				print(to_json(levels))
-			
+				
+				lvl_y = 0
+				lvl_x = 0
+				cur_world = level_world
+				cur_lvl_num = level_number
+				
+				
+			elif !line.empty():
+				for chara in line:
+					if lvl_y == 0:
+						var lvl_content_array = levels[cur_world][cur_lvl_num]["levels"]
+						lvl_content_array.append([])
+					levels[cur_world][cur_lvl_num].levels[lvl_x].append(chara)
+					lvl_x = lvl_x+1
+				
+				lvl_y = lvl_y+1
+				lvl_x = 0
+				
 					
 	
 	#var content = levels_file.get_as_text()
