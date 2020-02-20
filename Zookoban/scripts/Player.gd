@@ -6,26 +6,12 @@ func _ready():
 
 func _process(delta):
 	
-	direction = move_input()
+	var direction = move_input()
 	
 	if direction == Vector2(0,0):
-		is_moving = false
+		pass
 	else:
-		match grid.is_cell_free(position, direction):
-			TYPE.EMPTY, TYPE.SOCKET, TYPE.INSOCKET:
-				move(direction)
-			TYPE.ANIMAL:
-				for node in grid.get_children():
-					if node.type == TYPE.ANIMAL:
-						print ("PLAYER : " + str(grid.world_to_map(self.position)))
-						print ("ACTOR : " + str(grid.world_to_map(node.position)))
-						
-						if grid.world_to_map(node.position) == grid.world_to_map(self.position) + direction :
-							node.move(direction)
-							print(str(node.type) +" MOVE")
-						
-				print("SELF MOVE")
-				move(direction)
+		move(direction)
 				
 
 func move_input():
@@ -42,3 +28,7 @@ func move_input():
 		dir = Vector2(0,0)
 		
 	return dir
+
+func end_move():
+	.end_move()
+	print("_______")
