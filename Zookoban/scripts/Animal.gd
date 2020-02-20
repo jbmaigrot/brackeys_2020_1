@@ -34,7 +34,7 @@ func _ready():
 			sprite.texture = spr_cross
 
 func _process(delta):
-	if type == TYPE.INSOCKET:
+	if type == TYPE.EMPTY:
 		sprite.flip_v = true
 		z_index = 2
 
@@ -47,7 +47,7 @@ func end_move():
 					ANIMALS.CUBE:
 						match node.animal_type:
 							ANIMALS.CUBE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CIRCLE:
 								pass
@@ -58,10 +58,10 @@ func end_move():
 					ANIMALS.CIRCLE:
 						match node.animal_type:
 							ANIMALS.CUBE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CIRCLE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.LOSANGE:
 								pass
@@ -70,25 +70,27 @@ func end_move():
 					ANIMALS.LOSANGE:
 						match node.animal_type:
 							ANIMALS.CUBE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CIRCLE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.LOSANGE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CROSS:
 								pass
 					ANIMALS.CROSS:
 						match node.animal_type:
 							ANIMALS.CUBE:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
 							ANIMALS.CIRCLE:
 								pass
 							ANIMALS.LOSANGE:
 								pass
 							ANIMALS.CROSS:
-								type = TYPE.INSOCKET
+								type = TYPE.EMPTY
 								node.filled = true
+				if node.filled:
+					grid.grid_refresh_actor_type(self)
