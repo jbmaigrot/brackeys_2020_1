@@ -20,6 +20,10 @@ func _ready():
 		grid.append([])
 		for y in range(grid_size.y):
 			grid[x].append(EMPTY)
+			#This set the "cell" type to use
+			set_cell(x,y,0)
+	# This updates the "Autotiling" based on how the grid is filled
+	update_bitmask_region(Vector2(0,0),grid_size)
 
 	# Player
 	#var new_player = Player.instance()
