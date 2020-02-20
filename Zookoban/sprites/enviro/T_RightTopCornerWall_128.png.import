@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/T_KeeperA_128.png-24d004c851103ae085bddbee0e47adab.stex"
+path="res://.import/T_RightTopCornerWall_128.png-83a3897b9e90834cf25ac043308ee29f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/T_KeeperA_128.png"
-dest_files=[ "res://.import/T_KeeperA_128.png-24d004c851103ae085bddbee0e47adab.stex" ]
+source_file="res://sprites/enviro/T_RightTopCornerWall_128.png"
+dest_files=[ "res://.import/T_RightTopCornerWall_128.png-83a3897b9e90834cf25ac043308ee29f.stex" ]
 
 [params]
 
