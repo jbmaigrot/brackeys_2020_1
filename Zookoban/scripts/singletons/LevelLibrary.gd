@@ -5,7 +5,7 @@ const  LEVELS_DIR_PATH = "res://levels"
 const LEVEL_INFO_FLAG = "]"
 const LEVEL_INFO_SEPARATOR = "|"
 
-var levels = []
+var levels = {3: {1:{"level 1 of world 2" : "test", "level" : [[0,0,0],[0,0,0]] }}}
 
 func _ready():
 	load_level_files(list_all_level_files(LEVELS_DIR_PATH))
@@ -56,7 +56,15 @@ func load_level_file(file_path):
 					level_number = int(level_infos[1])
 				if level_infos.size() >=3:
 					level_name = level_infos[2]
-				print ("parsing level "+str(level_world)+"."+str(level_number)+" : \""+level_name+"\".") 
+				print ("parsing level "+str(level_world)+"."+str(level_number)+" : \""+level_name+"\".")
+				if !levels.has(level_world):
+					levels[level_world] = {}
+				if levels[level_world].has(level_number):
+					print("error : level "+str(level_world)+"."+str(level_number)+"already exists !")
+				else:
+					levels[level_world][level_number] = {"name" : level_name, "levels":[]}
+				print(to_json(levels))
+			
 					
 	
 	#var content = levels_file.get_as_text()
