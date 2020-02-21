@@ -6,6 +6,8 @@ func _ready():
 
 func _process(delta):
 	
+	action_input()
+	
 	var direction = move_input()
 	
 	if direction != Vector2(0,0):
@@ -28,6 +30,10 @@ func move_input():
 		dir = Vector2(0,0)
 		
 	return dir
+
+func action_input():
+	if Input.is_action_just_pressed("action_reset"):
+		grid.reset_level()
 
 func end_move():
 	.end_move()
