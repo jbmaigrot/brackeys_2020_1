@@ -8,6 +8,7 @@ var half_tile_size = tile_size / 2;
 
 var grid_size
 var grid = [];
+var currentlevel
 
 var camera
 
@@ -24,6 +25,7 @@ func _ready():
 	
 
 func generate_level(level):
+	currentlevel = level
 	grid = [];
 	for x in range(level.size()):
 		grid.append([])
@@ -97,6 +99,11 @@ func generate_level(level):
 	camera.position = grid_size * 64
 	# This updates the "Autotiling" based on how the grid is filled
 	update_bitmask_region(Vector2(0,0),grid_size)
+
+func reset_level():
+	for node in get_children():
+		node.queue_free()
+	generate_level(currentlevel)
 
 func add_actor(actor,pos,animaltype = -1):
 	var new_actor = actor.instance()
