@@ -9,6 +9,8 @@ var half_tile_size = tile_size / 2;
 var grid_size
 var grid = [];
 
+var camera
+
 onready var Player = preload("res://scenes/actors/Player.tscn")
 onready var Animal = preload("res://scenes/actors/Animal.tscn")
 onready var AnimalSocket = preload("res://scenes/actors/AnimalSocket.tscn")
@@ -17,6 +19,7 @@ const PLAYER_STARTPOS = Vector2(0,0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Test Level Generation
+	camera = get_parent().find_node("Camera2D")
 	generate_level(LevelLibrary.levels[1][5]["levels"])
 	
 
@@ -47,51 +50,51 @@ func generate_level(level):
 			match level[x][y]:
 				"ĉ":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CUBE)
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 				
 				"c":
 					add_actor(Animal,Vector2(x,y), ANIMALS.CUBE)
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 					
 				
 				"ô":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CIRCLE)
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 				
 				"o":
 					add_actor(Animal,Vector2(x,y), ANIMALS.CIRCLE)
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 				
 				"ŝ":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.LOSANGE)
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 				
 				"s":
 					add_actor(Animal,Vector2(x,y), ANIMALS.LOSANGE)
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 					
 				
 				"+":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CROSS)
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 				
 				"x":
 					add_actor(Animal,Vector2(x,y), ANIMALS.CROSS)
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 					
 				"#":
 					grid[x][y] = TYPE.WALL
-					set_cell(x,y,0)
+					set_cell(x,y,1)
 				
 				"@":
 					add_actor(Player,Vector2(x,y))
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 				_:
 					grid[x][y]  = TYPE.EMPTY
-					set_cell(x,y,1)
+					set_cell(x,y,0)
 	
 	grid_size = Vector2(grid.size(),grid[0].size())
-	
+	camera.position = grid_size * 64
 	# This updates the "Autotiling" based on how the grid is filled
 	update_bitmask_region(Vector2(0,0),grid_size)
 

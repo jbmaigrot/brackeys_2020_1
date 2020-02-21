@@ -12,6 +12,11 @@ onready var spr_circle = preload("res://sprites/animals/A_circle.png")
 onready var spr_losange = preload("res://sprites/animals/A_losange.png")
 onready var spr_cross = preload("res://sprites/animals/A_cross.png")
 
+onready var spr_cube_s = preload("res://sprites/animals/A_square_sleep.png")
+onready var spr_circle_s = preload("res://sprites/animals/A_circle_sleep.png")
+onready var spr_losange_s = preload("res://sprites/animals/A_losange_sleep.png")
+onready var spr_cross_s = preload("res://sprites/animals/A_cross_sleep.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	._ready()
@@ -35,7 +40,15 @@ func _ready():
 
 func _process(delta):
 	if type == TYPE.EMPTY:
-		sprite.flip_v = true
+		match animal_type:
+			ANIMALS.CUBE:
+				sprite.texture = spr_cube_s
+			ANIMALS.CIRCLE:
+				sprite.texture = spr_circle_s
+			ANIMALS.LOSANGE:
+				sprite.texture = spr_losange_s
+			ANIMALS.CROSS:
+				sprite.texture = spr_cross_s
 		z_index = 2
 
 func end_move():
