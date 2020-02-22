@@ -3,6 +3,7 @@ extends Node
 const MAIN_MENU_PATH = "res://scenes/MainMenu.tscn"
 const LEVEL_SELECT_MENU_PATH = "res://scenes/LevelSelectMenu.tscn"
 const END_LEVEL_MENU = "res://scenes/LevelEndMenu.tscn"
+const FINISH_MENU = "res://scenes/FinishMenu.tscn"
 const GAME_SCENE = "res://scenes/MainScene.tscn"
 const MENU_PAUSE_SCENE = preload("res://scenes/PauseMenu.tscn")
 
@@ -53,4 +54,4 @@ func load_next_level():
 	elif LevelLibrary.levels.has(current_world+1) && LevelLibrary.levels[current_world+1].has(1):
 		load_level(current_world+1,1)
 	else :
-		print ("thank you for finishing the game")
+		load_new_scene(FINISH_MENU)
