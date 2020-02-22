@@ -1,5 +1,7 @@
 extends "Actor.gd"
 
+class_name Player
+
 func _ready():
 	._ready()
 	type = TYPE.PLAYER
@@ -11,7 +13,9 @@ func _process(delta):
 	var direction = move_input()
 	
 	if direction != Vector2(0,0):
-		if(move(direction)):
+		if(move(direction, false)):
+			grid.currentmove += 1
+			print("CURRENT MOVE : " + str(grid.currentmove))
 			pass
 			# Increase move count
 				
@@ -37,8 +41,11 @@ func action_input():
 	
 	if Input.is_action_just_pressed("action_reset"):
 		grid.reset_level()
+		
+	if Input.is_action_just_pressed("action_rewind"):
+		grid.rewind()
 
-func end_move():
-	.end_move()
+func end_move(re):
+	.end_move(re)
 	SoundManager.play_sfx(["res://audio/sfx/walk-01.wav","res://audio/sfx/walk-02.wav"])
 	print("_______")

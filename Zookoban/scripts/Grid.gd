@@ -10,16 +10,18 @@ var grid_size
 var grid = [];
 var currentlevel
 
+var currentmove
+
 var level_goal
 var goal_progression
 
 var camera
 
-onready var Player = preload("res://scenes/actors/Player.tscn")
-onready var Animal = preload("res://scenes/actors/Animal.tscn")
-onready var AnimalSocket = preload("res://scenes/actors/AnimalSocket.tscn")
-onready var Button = preload("res://scenes/actors/Button.tscn")
-onready var Door = preload("res://scenes/actors/Door.tscn")
+onready var SPlayer = preload("res://scenes/actors/Player.tscn")
+onready var SAnimal = preload("res://scenes/actors/Animal.tscn")
+onready var SAnimalSocket = preload("res://scenes/actors/AnimalSocket.tscn")
+onready var SButton = preload("res://scenes/actors/Button.tscn")
+onready var SDoor = preload("res://scenes/actors/Door.tscn")
 
 const PLAYER_STARTPOS = Vector2(0,0)
 
@@ -34,6 +36,7 @@ func _ready():
 	
 
 func generate_level(level):
+	currentmove = 0
 	for node in get_children():
 		node.visible = false
 		node.queue_free()
@@ -68,41 +71,41 @@ func generate_level(level):
 #			p = OpenDoor
 			match level[x][y]:
 				"ĉ":
-					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CUBE)
+					add_actor(SAnimalSocket,Vector2(x,y), ANIMALS.CUBE)
 					set_cell(x,y,grass_rand)
 					level_goal += 1
 				
 				"c":
-					add_actor(Animal,Vector2(x,y), ANIMALS.CUBE)
+					add_actor(SAnimal,Vector2(x,y), ANIMALS.CUBE)
 					set_cell(x,y,grass_rand)
 					
 				
 				"ô":
-					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CIRCLE)
+					add_actor(SAnimalSocket,Vector2(x,y), ANIMALS.CIRCLE)
 					set_cell(x,y,grass_rand)
 					level_goal += 1
 				
 				"o":
-					add_actor(Animal,Vector2(x,y), ANIMALS.CIRCLE)
+					add_actor(SAnimal,Vector2(x,y), ANIMALS.CIRCLE)
 					set_cell(x,y,grass_rand)
 				
 				"ŝ":
-					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.LOSANGE)
+					add_actor(SAnimalSocket,Vector2(x,y), ANIMALS.LOSANGE)
 					set_cell(x,y,grass_rand)
 					level_goal += 1
 				
 				"s":
-					add_actor(Animal,Vector2(x,y), ANIMALS.LOSANGE)
+					add_actor(SAnimal,Vector2(x,y), ANIMALS.LOSANGE)
 					set_cell(x,y,grass_rand)
 					
 				
 				"+":
-					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CROSS)
+					add_actor(SAnimalSocket,Vector2(x,y), ANIMALS.CROSS)
 					set_cell(x,y,grass_rand)
 					level_goal += 1
 				
 				"x":
-					add_actor(Animal,Vector2(x,y), ANIMALS.CROSS)
+					add_actor(SAnimal,Vector2(x,y), ANIMALS.CROSS)
 					set_cell(x,y,grass_rand)
 					
 				"#":
@@ -118,15 +121,15 @@ func generate_level(level):
 					set_cell(x,y,2)
 				
 				"@":
-					add_actor(Player,Vector2(x,y))
+					add_actor(SPlayer,Vector2(x,y))
 					set_cell(x,y,grass_rand)
 				
 				"b":
-					add_actor(Button,Vector2(x,y))
+					add_actor(SButton,Vector2(x,y))
 					set_cell(x,y,grass_rand)
 				
 				"d":
-					add_actor(Door,Vector2(x,y))
+					add_actor(SDoor,Vector2(x,y))
 					set_cell(x,y,grass_rand)
 				
 				_:
@@ -163,6 +166,7 @@ func is_cell_free(pos, direction):
 	if target_grid_pos.x < grid_size.x and target_grid_pos.x >= 0:
 		if target_grid_pos.y < grid_size.y and target_grid_pos.y >= 0:
 			# If within grid return target ID
+			print (grid[target_grid_pos.x][target_grid_pos.y])
 			return grid[target_grid_pos.x][target_grid_pos.y]
 
 
@@ -198,6 +202,21 @@ func grid_move_check(actor, direction):
 		return false
 	else:
 		return true
+
+func rewind():
+	var rewinded = false
+	if currentmove != 0:
+		for node in get_children():
+			if node is Actor:
+				for i in node.memory.size():
+					if node.memory[i].find(str(currentmove-1)) != -1:
+						print(str(node.memory) + " -- " + str(node.name))
+						node.type = node.memory[i][2]
+						node.move(-node.memory[i][1],true)
+						node.memory.remove(i)
+						rewinded = true
+	if rewinded:
+		currentmove -= 1
 
 func _process(delta):
 	if (goal_progression == level_goal):

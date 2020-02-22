@@ -49,7 +49,26 @@ func _ready():
 			top_sprite.texture = spr_cross_t
 
 func _process(delta):
-	if filled:
+	print(type)
+	pass
+			
+func move(dir, re = false):
+	if type == TYPE.SOCKET:
+		memory.append([str(grid.currentmove), Vector2.ZERO, type])
+		type = TYPE.SOCKETFILLED
+		filled = true
 		if !top_sprite.visible:
 			top_sprite.visible = true
 			grid.goal_progression += 1
+	
+	elif type == TYPE.SOCKETFILLED:
+		type = TYPE.SOCKET
+		var actor_grid_pos = grid.world_to_map(position)
+		grid.grid[actor_grid_pos.x][actor_grid_pos.y] = type
+		filled = false
+		if top_sprite.visible:
+			top_sprite.visible = false
+			grid.goal_progression -= 1
+	
+	
+	
