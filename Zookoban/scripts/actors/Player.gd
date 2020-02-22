@@ -40,4 +40,5 @@ func action_input():
 
 func end_move():
 	.end_move()
+	SoundManager.play_sfx(["res://audio/sfx/walk-01.wav","res://audio/sfx/walk-02.wav"])
 	print("_______")

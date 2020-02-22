@@ -19,7 +19,6 @@ func _ready():
 	sfx = AudioStreamPlayer.new()
 	self.add_child(sfx)
 	sfx.bus = "SFX"
-	sfx.stream = load("res://audio/music/music.ogg")
 	pass # Replace with function body.
 
 
@@ -34,3 +33,10 @@ func sounds_toggled(activated):
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), true)
 	else:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), false)
+		
+func play_sfx(path):
+		var sel = 0
+		if path.size() != 1:
+			sel = randi()%path.size()-1
+		sfx.stream = load(path[sel])
+		sfx.play()
