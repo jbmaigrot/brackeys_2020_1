@@ -15,13 +15,16 @@ var camera
 onready var Player = preload("res://scenes/actors/Player.tscn")
 onready var Animal = preload("res://scenes/actors/Animal.tscn")
 onready var AnimalSocket = preload("res://scenes/actors/AnimalSocket.tscn")
+onready var Button = preload("res://scenes/actors/Button.tscn")
+onready var Door = preload("res://scenes/actors/Door.tscn")
+
 const PLAYER_STARTPOS = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Test Level Generation
 	camera = get_parent().find_node("Camera2D")
-	generate_level(LevelLibrary.levels[1][5]["levels"])
+	generate_level(LevelLibrary.levels[2][2]["levels"])
 	
 
 func generate_level(level):
@@ -88,9 +91,22 @@ func generate_level(level):
 					grid[x][y] = TYPE.WALL
 					set_cell(x,y,1)
 				
+				"*":
+					grid[x][y] = TYPE.OBSTACLE
+					set_cell(x,y,2)
+				
 				"@":
 					add_actor(Player,Vector2(x,y))
 					set_cell(x,y,0)
+				
+				"b":
+					add_actor(Button,Vector2(x,y))
+					set_cell(x,y,0)
+				
+				"d":
+					add_actor(Door,Vector2(x,y))
+					set_cell(x,y,0)
+				
 				_:
 					grid[x][y]  = TYPE.EMPTY
 					set_cell(x,y,0)
@@ -98,10 +114,11 @@ func generate_level(level):
 	grid_size = Vector2(grid.size(),grid[0].size())
 	camera.position = grid_size * 64
 	# This updates the "Autotiling" based on how the grid is filled
-	update_bitmask_region(Vector2(0,0),grid_size)
+	update_bitmask_region()
 
 func reset_level():
 	for node in get_children():
+		node.visible = false
 		node.queue_free()
 	generate_level(currentlevel)
 

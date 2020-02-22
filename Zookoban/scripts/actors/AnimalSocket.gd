@@ -1,6 +1,6 @@
 extends "Actor.gd"
 
-enum ANIMALS {CUBE, CIRCLE, LOSANGE, STAR, CROSS}
+enum ANIMALS {CUBE, CIRCLE, LOSANGE, CROSS}
 
 var animal_type
 

@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scripts/AnimalSocket.gd" type="Script" id=1]
+[ext_resource path="res://scripts/actors/AnimalSocket.gd" type="Script" id=1]
 [ext_resource path="res://sprites/proto/crate_31.png" type="Texture" id=2]
+
 
 [node name="AnimalSocket" type="KinematicBody2D"]
 z_index = 1

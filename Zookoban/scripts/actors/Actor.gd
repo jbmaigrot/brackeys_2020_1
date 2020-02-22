@@ -6,7 +6,7 @@ var target_direction = Vector2()
 var world_target_pos = Vector2()
 var is_moving = false
 
-var type
+var type = TYPE.EMPTY
 
 var velocity = Vector2();
 

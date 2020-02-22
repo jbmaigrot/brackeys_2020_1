@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/Grid.gd" type="Script" id=1]
+[ext_resource path="res://sprites/enviro/T_GrassGround_128.png" type="Texture" id=2]
 [ext_resource path="res://sprites/enviro/ts_enviro.tres" type="TileSet" id=3]
 
 [node name="Node" type="Node"]
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 766.363, 485.15 )
+scale = Vector2( 36.3664, 21.3469 )
+texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
