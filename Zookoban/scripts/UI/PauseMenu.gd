@@ -7,3 +7,4 @@ func _ready():
 	
 	$CenterContainer/VBoxContainer/ButtonResume.connect("pressed",Globals,"hide_pause_menu")
 	$CenterContainer/VBoxContainer/ButtonMainMenu.connect("pressed",Globals,"load_main_menu")
+	$CenterContainer/VBoxContainer/ButtonRestart.connect("pressed",Globals,"load_level",[Globals.current_world, Globals.current_level])

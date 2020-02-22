@@ -33,6 +33,8 @@ func load_level_select_menu():
 	load_new_scene(LEVEL_SELECT_MENU_PATH)
 
 func load_level(world_idx,level_idx):
+	if pause_menu_instance != null:
+		hide_pause_menu()
 	current_world = world_idx
 	current_level = level_idx
 	
