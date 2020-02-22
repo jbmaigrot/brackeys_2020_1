@@ -2,6 +2,7 @@ extends Node
 
 const MAIN_MENU_PATH = "res://scenes/MainMenu.tscn"
 const LEVEL_SELECT_MENU_PATH = "res://scenes/LevelSelectMenu.tscn"
+const END_LEVEL_MENU = "res://scenes/LevelEndMenu.tscn"
 const GAME_SCENE = "res://scenes/MainScene.tscn"
 const MENU_PAUSE_SCENE = preload("res://scenes/PauseMenu.tscn")
 
@@ -42,3 +43,14 @@ func hide_pause_menu():
 		get_tree().root.remove_child(pause_menu_instance)
 		pause_menu_instance = null
 	
+func display_end_level():
+	load_new_scene(END_LEVEL_MENU)
+	
+func load_next_level():
+	print("loading next level")
+	if LevelLibrary.levels[current_world].has(current_level+1):
+		load_level(current_world,current_level+1)
+	elif LevelLibrary.levels.has(current_world+1) && LevelLibrary.levels[current_world+1].has(1):
+		load_level(current_world+1,1)
+	else :
+		print ("thank you for finishing the game")
