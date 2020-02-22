@@ -8,6 +8,8 @@ var sfx
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pause_mode = Node.PAUSE_MODE_PROCESS
+	
 	# Create Music Player
 	music = AudioStreamPlayer.new()
 	self.add_child(music)
