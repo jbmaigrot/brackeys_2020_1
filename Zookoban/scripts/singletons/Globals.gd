@@ -3,6 +3,7 @@ extends Node
 const MAIN_MENU_PATH = "res://scenes/MainMenu.tscn"
 const LEVEL_SELECT_MENU_PATH = "res://scenes/LevelSelectMenu.tscn"
 const GAME_SCENE = "res://scenes/MainScene.tscn"
+const MENU_PAUSE_PATH = "res://scenes/MenuPause.tscn"
 
 var current_world = -1
 var current_level = -1
@@ -24,3 +25,10 @@ func load_level(world_idx,level_idx):
 	current_level = level_idx
 	
 	load_new_scene(GAME_SCENE)
+	
+func display_pause_menu():
+	pass
+	
+func hide_pause_menu():
+	pass
+	
