@@ -21,3 +21,16 @@ func _ready():
 	sfx.bus = "SFX"
 	sfx.stream = load("res://audio/music/music.ogg")
 	pass # Replace with function body.
+
+
+func music_toggled(activated):
+	if activated:
+		print("toggling music on")
+	else:
+		print("toggling music off")
+	
+func sounds_toggled(activated):
+	if activated:
+		print("toggling sounds on")
+	else:
+		print("toggling sounds off")
