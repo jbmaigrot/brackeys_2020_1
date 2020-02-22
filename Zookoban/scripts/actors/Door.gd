@@ -32,7 +32,7 @@ func _process(delta):
 			open = true
 			break
 		else:
-			open = false
+			open = false 
 	
 	if grid.grid[pos.x][pos.y] == TYPE.OBSTACLE and open:
 		grid.grid[pos.x][pos.y] = TYPE.EMPTY
