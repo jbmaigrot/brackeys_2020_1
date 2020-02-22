@@ -15,4 +15,4 @@ func exit_button_pressed():
 	get_tree().quit()
 	
 func start_button_pressed():
-	Globals.load_new_scene(first_scene_temp)
+	Globals.load_level(1,1)
