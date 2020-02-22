@@ -12,7 +12,11 @@ var current_level = -1
 
 var pause_menu_instance = null
 
+var soundmanager
+
 func _ready():
+	soundmanager = SoundManager.new()
+	self.add_child(soundmanager)
 	pass 
 
 func load_new_scene(new_scene_path):
