@@ -19,9 +19,10 @@ func _ready():
 
 func _process(delta):
 	if grid.grid[pos.x][pos.y] == TYPE.OBSTACLE and open:
-		grid.grid[pos.x][pos.y] == TYPE.EMPTY
+		grid.grid[pos.x][pos.y] = TYPE.EMPTY
 		sprite.texture = spr_door_open
-	elif grid.grid[pos.x][pos.y] != TYPE.EMPTY and !open:
-		grid.grid[pos.x][pos.y] == TYPE.OBSTACLE
+	
+	elif grid.grid[pos.x][pos.y] == TYPE.EMPTY and !open:
+		grid.grid[pos.x][pos.y] = TYPE.OBSTACLE
 		sprite.texture = spr_door_closed
 	

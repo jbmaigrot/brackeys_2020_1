@@ -115,6 +115,8 @@ func generate_level(level):
 	camera.position = grid_size * 64
 	# This updates the "Autotiling" based on how the grid is filled
 	update_bitmask_region()
+	update_bitmask_region()
+	update_bitmask_region()
 
 func reset_level():
 	for node in get_children():
