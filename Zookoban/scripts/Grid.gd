@@ -24,7 +24,7 @@ const PLAYER_STARTPOS = Vector2(0,0)
 func _ready():
 	# Test Level Generation
 	camera = get_parent().find_node("Camera2D")
-	generate_level(LevelLibrary.levels[2][2]["levels"])
+	generate_level(LevelLibrary.levels[Globals.current_world][Globals.current_level]["levels"])
 	
 
 func generate_level(level):
