@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/UI/LevelEndMenu.gd" type="Script" id=1]
-[ext_resource path="res://sprites/ui/VictoryScreen.jpg" type="Texture" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.972549, 0.976471, 0.913725, 1 )
@@ -39,11 +38,6 @@ margin_left = 530.0
 margin_top = 281.0
 margin_right = 750.0
 margin_bottom = 439.0
-
-[node name="Sprite" type="Sprite" parent="CenterContainer/VBoxContainer"]
-position = Vector2( 109.768, 78.6766 )
-scale = Vector2( 0.665906, 0.667366 )
-texture = ExtResource( 2 )
 
 [node name="ButtonNextLevel" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_right = 220.0
