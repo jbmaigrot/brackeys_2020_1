@@ -196,5 +196,4 @@ func grid_move_check(actor, direction):
 func _process(delta):
 	if (goal_progression == level_goal):
 		print("WIN")
-		Globals.current_level += 1
-		generate_level(LevelLibrary.levels[Globals.current_world][Globals.current_level]["levels"])
+		Globals.display_end_level()
