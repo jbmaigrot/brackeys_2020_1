@@ -32,6 +32,9 @@ func move_input():
 	return dir
 
 func action_input():
+	if Input.is_action_just_pressed("ui_cancel"):
+		Globals.display_pause_menu();
+	
 	if Input.is_action_just_pressed("action_reset"):
 		grid.reset_level()
 

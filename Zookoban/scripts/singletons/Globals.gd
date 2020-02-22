@@ -3,10 +3,12 @@ extends Node
 const MAIN_MENU_PATH = "res://scenes/MainMenu.tscn"
 const LEVEL_SELECT_MENU_PATH = "res://scenes/LevelSelectMenu.tscn"
 const GAME_SCENE = "res://scenes/MainScene.tscn"
-const MENU_PAUSE_PATH = "res://scenes/MenuPause.tscn"
+const MENU_PAUSE_SCENE = preload("res://scenes/PauseMenu.tscn")
 
 var current_world = -1
 var current_level = -1
+
+var pause_menu_instance = null
 
 func _ready():
 	pass 
@@ -15,6 +17,8 @@ func load_new_scene(new_scene_path):
 	get_tree().change_scene(new_scene_path)
 	
 func load_main_menu():
+	if pause_menu_instance != null:
+		hide_pause_menu()
 	load_new_scene(MAIN_MENU_PATH)
 	
 func load_level_select_menu():
@@ -27,8 +31,14 @@ func load_level(world_idx,level_idx):
 	load_new_scene(GAME_SCENE)
 	
 func display_pause_menu():
-	pass
+	print("Displaying pause menu")
+	if pause_menu_instance == null :
+		pause_menu_instance = MENU_PAUSE_SCENE.instance()
+		get_tree().root.add_child(pause_menu_instance)
 	
 func hide_pause_menu():
-	pass
+	print("Hiding pause menu")
+	if pause_menu_instance != null :
+		get_tree().root.remove_child(pause_menu_instance)
+		pause_menu_instance = null
 	
