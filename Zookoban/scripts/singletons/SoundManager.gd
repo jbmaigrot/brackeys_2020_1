@@ -25,12 +25,12 @@ func _ready():
 
 func music_toggled(activated):
 	if activated:
-		print("toggling music on")
+		music.play()
 	else:
-		print("toggling music off")
+		music.stop()
 	
 func sounds_toggled(activated):
 	if activated:
-		print("toggling sounds on")
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), true)
 	else:
-		print("toggling sounds off")
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), false)
