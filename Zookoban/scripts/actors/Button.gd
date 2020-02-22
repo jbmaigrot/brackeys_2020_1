@@ -22,11 +22,6 @@ func _ready():
 
 
 func _process(delta):
-#	if door_list == []:
-#		for node in grid.get_children():
-#			if node is Door:
-#				door_list.append(node)
-#		print(door_list)
 	
 	if (grid.grid[pos.x][pos.y] == TYPE.PLAYER or grid.grid[pos.x][pos.y] == TYPE.ANIMAL) and !active:
 		# switch_doors(true)
