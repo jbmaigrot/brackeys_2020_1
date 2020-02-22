@@ -3,6 +3,8 @@ extends CenterContainer
 
 export (String, FILE) var first_scene_temp
 
+const BUTTON_SCENE = preload("res://scenes/ButtonLevelSelect.tscn")
+
 
 func _ready():
 	$VBoxContainer/Button_Back.connect("pressed", self, "back_button_pressed")
@@ -14,7 +16,7 @@ func _ready():
 				$VBoxContainer/GridContainer.columns = LevelLibrary.levels[world_idx].size()
 				
 			var level_info = LevelLibrary.levels[world_idx][level_idx]
-			var button = Button.new()
+			var button = BUTTON_SCENE.instance()
 			button.text = str(world_idx)+"."+str(level_idx)
 			button.connect("pressed",self, "level_button_pressed", [world_idx,level_idx])
 			$VBoxContainer/GridContainer.add_child(button)

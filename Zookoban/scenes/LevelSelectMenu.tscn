@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/UI/LevelSelectMenu.gd" type="Script" id=1]
+[ext_resource path="res://sprites/ui/MenuLevels.jpg" type="Texture" id=2]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.972549, 0.976471, 0.913725, 1 )
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://sprites/ui/Roboto-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = SubResource( 2 )
 
 [node name="Control" type="CenterContainer"]
 anchor_right = 1.0
@@ -14,24 +25,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 643.195, 358.095 )
+scale = Vector2( 0.668644, 0.671789 )
+texture = ExtResource( 2 )
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 577.0
-margin_top = 339.0
-margin_right = 703.0
-margin_bottom = 381.0
+margin_left = 530.0
+margin_top = 333.0
+margin_right = 750.0
+margin_bottom = 387.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
+visible = false
 margin_right = 126.0
 margin_bottom = 14.0
 text = "LEVEL SELECT MENU"
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
-margin_top = 18.0
-margin_right = 126.0
-margin_bottom = 18.0
+margin_right = 220.0
 
 [node name="Button_Back" type="Button" parent="VBoxContainer"]
-margin_top = 22.0
-margin_right = 126.0
-margin_bottom = 42.0
-text = "Back"
+margin_top = 4.0
+margin_right = 220.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 220, 50 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.482353, 0.482353, 0.482353, 1 )
+custom_colors/font_color_hover = Color( 0.917647, 0.596078, 0.654902, 1 )
+custom_colors/font_color_pressed = Color( 0.854902, 0.356863, 0.447059, 1 )
+text = "BACK"
