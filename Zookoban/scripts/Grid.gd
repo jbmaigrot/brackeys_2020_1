@@ -46,6 +46,8 @@ func generate_level(level):
 		grid.append([])
 		for y in range(level[x].size()):
 			grid[x].append([])
+			var grass_rand = int(rand_range(4,14))
+			var obs_rand = int(rand_range(16,18))
 			var object
 #			=======
 #			LEGEND
@@ -67,41 +69,41 @@ func generate_level(level):
 			match level[x][y]:
 				"ĉ":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CUBE)
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 					level_goal += 1
 				
 				"c":
 					add_actor(Animal,Vector2(x,y), ANIMALS.CUBE)
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 					
 				
 				"ô":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CIRCLE)
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 					level_goal += 1
 				
 				"o":
 					add_actor(Animal,Vector2(x,y), ANIMALS.CIRCLE)
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 				
 				"ŝ":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.LOSANGE)
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 					level_goal += 1
 				
 				"s":
 					add_actor(Animal,Vector2(x,y), ANIMALS.LOSANGE)
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 					
 				
 				"+":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CROSS)
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 					level_goal += 1
 				
 				"x":
 					add_actor(Animal,Vector2(x,y), ANIMALS.CROSS)
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 					
 				"#":
 					grid[x][y] = TYPE.WALL
@@ -109,7 +111,7 @@ func generate_level(level):
 				
 				"*":
 					grid[x][y] = TYPE.OBSTACLE
-					set_cell(x,y,3)
+					set_cell(x,y,obs_rand)
 				
 				"T":
 					grid[x][y] = TYPE.OBSTACLE
@@ -117,19 +119,19 @@ func generate_level(level):
 				
 				"@":
 					add_actor(Player,Vector2(x,y))
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 				
 				"b":
 					add_actor(Button,Vector2(x,y))
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 				
 				"d":
 					add_actor(Door,Vector2(x,y))
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 				
 				_:
 					grid[x][y]  = TYPE.EMPTY
-					set_cell(x,y,0)
+					set_cell(x,y,grass_rand)
 	
 	grid_size = Vector2(grid.size(),grid[0].size())
 	camera.position = grid_size * 64
