@@ -30,9 +30,9 @@ func music_toggled(activated):
 	
 func sounds_toggled(activated):
 	if activated:
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), true)
-	else:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), false)
+	else:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), true)
 		
 func play_sfx(path):
 		var sel = 0
