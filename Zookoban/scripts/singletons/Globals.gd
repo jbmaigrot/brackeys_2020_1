@@ -13,12 +13,7 @@ var current_level = -1
 var pause_menu_instance = null
 var gui_canvas_layer = null
 
-var soundmanager
-
-func _ready():
-	soundmanager = SoundManager.new()
-	self.add_child(soundmanager)
-	 
+func _ready():	 
 	gui_canvas_layer = CanvasLayer.new()
 	get_tree().root.call_deferred("add_child", gui_canvas_layer)
 
