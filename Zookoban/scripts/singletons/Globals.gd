@@ -11,9 +11,16 @@ var current_world = -1
 var current_level = -1
 
 var pause_menu_instance = null
+var gui_canvas_layer = null
+
+var soundmanager
 
 func _ready():
-	pass 
+	soundmanager = SoundManager.new()
+	self.add_child(soundmanager)
+	 
+	gui_canvas_layer = CanvasLayer.new()
+	get_tree().root.call_deferred("add_child", gui_canvas_layer)
 
 func load_new_scene(new_scene_path):
 	get_tree().change_scene(new_scene_path)
@@ -33,15 +40,17 @@ func load_level(world_idx,level_idx):
 	load_new_scene(GAME_SCENE)
 	
 func display_pause_menu():
+	get_tree().paused = true
 	print("Displaying pause menu")
 	if pause_menu_instance == null :
 		pause_menu_instance = MENU_PAUSE_SCENE.instance()
-		get_tree().root.add_child(pause_menu_instance)
+		gui_canvas_layer.add_child(pause_menu_instance)
 	
 func hide_pause_menu():
+	get_tree().paused = false
 	print("Hiding pause menu")
 	if pause_menu_instance != null :
-		get_tree().root.remove_child(pause_menu_instance)
+		pause_menu_instance.queue_free()
 		pause_menu_instance = null
 	
 func display_end_level():

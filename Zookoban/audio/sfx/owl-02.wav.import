@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/owl-02.wav-e08c5cdfccb60ef7861821643cfe800f.sample"
+
+[deps]
+
+source_file="res://audio/sfx/owl-02.wav"
+dest_files=[ "res://.import/owl-02.wav-e08c5cdfccb60ef7861821643cfe800f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
