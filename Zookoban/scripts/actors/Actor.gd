@@ -10,11 +10,9 @@ var type = TYPE.EMPTY
 
 var velocity = Vector2();
 
-var speed = 0;
-
-const MAXSPEED = 1000;
-
 var grid
+
+var memory = []
 
 func _ready():
 	grid = get_parent()

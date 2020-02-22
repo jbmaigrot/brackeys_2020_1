@@ -30,7 +30,6 @@ margin_bottom = 360.0
 alignment = 1
 
 [node name="MenuScreen" type="Sprite" parent="VBoxContainer2"]
-position = Vector2( 0.227687, -0.118487 )
 scale = Vector2( 0.66625, 0.667188 )
 texture = ExtResource( 2 )
 
