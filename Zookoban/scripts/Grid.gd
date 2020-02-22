@@ -10,6 +10,9 @@ var grid_size
 var grid = [];
 var currentlevel
 
+var level_goal
+var goal_progression
+
 var camera
 
 onready var Player = preload("res://scenes/actors/Player.tscn")
@@ -31,8 +34,14 @@ func _ready():
 	
 
 func generate_level(level):
+	for node in get_children():
+		node.visible = false
+		node.queue_free()
 	currentlevel = level
 	grid = [];
+	goal_progression = 0
+	level_goal = 0
+	
 	for x in range(level.size()):
 		grid.append([])
 		for y in range(level[x].size()):
@@ -59,6 +68,7 @@ func generate_level(level):
 				"ĉ":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CUBE)
 					set_cell(x,y,0)
+					level_goal += 1
 				
 				"c":
 					add_actor(Animal,Vector2(x,y), ANIMALS.CUBE)
@@ -68,6 +78,7 @@ func generate_level(level):
 				"ô":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CIRCLE)
 					set_cell(x,y,0)
+					level_goal += 1
 				
 				"o":
 					add_actor(Animal,Vector2(x,y), ANIMALS.CIRCLE)
@@ -76,6 +87,7 @@ func generate_level(level):
 				"ŝ":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.LOSANGE)
 					set_cell(x,y,0)
+					level_goal += 1
 				
 				"s":
 					add_actor(Animal,Vector2(x,y), ANIMALS.LOSANGE)
@@ -85,6 +97,7 @@ func generate_level(level):
 				"+":
 					add_actor(AnimalSocket,Vector2(x,y), ANIMALS.CROSS)
 					set_cell(x,y,0)
+					level_goal += 1
 				
 				"x":
 					add_actor(Animal,Vector2(x,y), ANIMALS.CROSS)
@@ -118,8 +131,8 @@ func generate_level(level):
 	camera.position = grid_size * 64
 	# This updates the "Autotiling" based on how the grid is filled
 	update_bitmask_region()
-	update_bitmask_region()
-	update_bitmask_region()
+	
+	
 
 func reset_level():
 	for node in get_children():
@@ -179,3 +192,9 @@ func grid_move_check(actor, direction):
 		return false
 	else:
 		return true
+
+func _process(delta):
+	if (goal_progression == level_goal):
+		print("WIN")
+		Globals.current_level += 1
+		generate_level(LevelLibrary.levels[Globals.current_world][Globals.current_level]["levels"])

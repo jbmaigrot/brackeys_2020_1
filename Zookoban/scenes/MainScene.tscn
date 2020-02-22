@@ -7,6 +7,7 @@
 [node name="Node" type="Node"]
 
 [node name="BG" type="Sprite" parent="."]
+visible = false
 position = Vector2( 766.363, 485.15 )
 scale = Vector2( 36.3664, 21.3469 )
 texture = ExtResource( 2 )
@@ -18,5 +19,6 @@ zoom = Vector2( 1.5, 1.5 )
 [node name="Grid" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 128, 128 )
+centered_textures = true
 format = 1
 script = ExtResource( 1 )

@@ -28,7 +28,6 @@ config/icon="res://icon.png"
 
 Globals="*res://scripts/singletons/Globals.gd"
 LevelLibrary="*res://scripts/singletons/LevelLibrary.gd"
-SoundManager="*res://scripts/singletons/SoundManager.gd"
 
 [display]
 

@@ -50,4 +50,6 @@ func _ready():
 
 func _process(delta):
 	if filled:
-		top_sprite.visible = true
+		if !top_sprite.visible:
+			top_sprite.visible = true
+			grid.goal_progression += 1
