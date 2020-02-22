@@ -6,6 +6,7 @@ const END_LEVEL_MENU = "res://scenes/LevelEndMenu.tscn"
 const FINISH_MENU = "res://scenes/FinishMenu.tscn"
 const GAME_SCENE = "res://scenes/MainScene.tscn"
 const MENU_PAUSE_SCENE = preload("res://scenes/PauseMenu.tscn")
+const OPTIONS_HUD_SCENE = preload("res://scenes/OptionsHUD.tscn")
 
 var current_world = -1
 var current_level = -1
@@ -15,6 +16,9 @@ var gui_canvas_layer = null
 
 func _ready():	 
 	gui_canvas_layer = CanvasLayer.new()
+	
+	var options_hud = OPTIONS_HUD_SCENE.instance() 
+	gui_canvas_layer.add_child(options_hud)
 	get_tree().root.call_deferred("add_child", gui_canvas_layer)
 
 func load_new_scene(new_scene_path):
