@@ -24,6 +24,9 @@ const PLAYER_STARTPOS = Vector2(0,0)
 func _ready():
 	# Test Level Generation
 	camera = get_parent().find_node("Camera2D")
+	if (Globals.current_world == -1):
+		Globals.current_world = 1
+		Globals.current_level = 1
 	generate_level(LevelLibrary.levels[Globals.current_world][Globals.current_level]["levels"])
 	
 
@@ -114,6 +117,8 @@ func generate_level(level):
 	grid_size = Vector2(grid.size(),grid[0].size())
 	camera.position = grid_size * 64
 	# This updates the "Autotiling" based on how the grid is filled
+	update_bitmask_region()
+	update_bitmask_region()
 	update_bitmask_region()
 
 func reset_level():
