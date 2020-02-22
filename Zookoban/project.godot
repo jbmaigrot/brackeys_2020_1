@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "Door",
 "language": "GDScript",
 "path": "res://scripts/actors/Door.gd"
-}, {
-"base": "Node",
-"class": "SoundManager",
-"language": "GDScript",
-"path": "res://scripts/singletons/SoundManager.gd"
 } ]
 _global_script_class_icons={
-"Door": "",
-"SoundManager": ""
+"Door": ""
 }
 
 [application]
@@ -34,6 +28,7 @@ config/icon="res://icon.png"
 
 Globals="*res://scripts/singletons/Globals.gd"
 LevelLibrary="*res://scripts/singletons/LevelLibrary.gd"
+SoundManager="*res://scripts/singletons/SoundManager.gd"
 
 [display]
 

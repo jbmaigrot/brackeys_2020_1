@@ -1,7 +1,5 @@
 extends Node
 
-class_name SoundManager
-
 var music_volume = 1
 var sounds_volume = 1
 
