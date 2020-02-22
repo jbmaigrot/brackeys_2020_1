@@ -109,6 +109,10 @@ func generate_level(level):
 				
 				"*":
 					grid[x][y] = TYPE.OBSTACLE
+					set_cell(x,y,3)
+				
+				"T":
+					grid[x][y] = TYPE.OBSTACLE
 					set_cell(x,y,2)
 				
 				"@":
